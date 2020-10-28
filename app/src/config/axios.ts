@@ -31,7 +31,7 @@ Api.interceptors.request.use(function (config) {
 Api.interceptors.response.use(
   function (response) {
     return new Promise((resolve) => {
-      setTimeout(() => resolve(response.data), 3000) // this line emulate slow network
+      setTimeout(() => resolve(response.data), 1500) // this line emulate slow network
     })
   },
   function (error) {

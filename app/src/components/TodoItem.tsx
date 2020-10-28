@@ -1,8 +1,7 @@
 import { TodoModel } from 'contracts/todo'
 import React from 'react'
 import moment from 'moment'
-import {useDispatch} from 'react-redux'
-import {deleteTodo} from 'redux/actions/todo.action'
+import {Link} from 'react-router-dom'
 
 interface Props {
   todo: TodoModel
@@ -10,18 +9,9 @@ interface Props {
 
 const TodoItem = ({ todo }: Props) => {
 
-  const dispatch = useDispatch()
-
-  const removeItem = (): void => {
-    dispatch(deleteTodo({id: todo.id}))
-  }
-
   return (
-    <div className="p-2 w-full sm:w-6/12 md:w-1/3 flex">
+    <Link to={'/todo/' + todo.id} className="p-2 w-full sm:w-6/12 md:w-1/3 flex">
       <div className="flex-grow group hover:bg-gray-300 p-4 cursor-pointer bg-white rounded shadow-lg select-none overflow-hidden relative">
-        <button className="bg-blue-200 hover:bg-blue-300 text-white font-bold px-2 rounded-full absolute top-0 right-0" onClick={removeItem}>
-          x
-        </button>
         <p className="font-semibold text-lg text-gray-900 group-hover:text-white break-all truncate">
           {todo.title}
         </p>
@@ -31,7 +21,7 @@ const TodoItem = ({ todo }: Props) => {
           {todo?.description}
         </p>
       </div>
-    </div>
+    </Link>
   )
 }
 

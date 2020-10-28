@@ -5,6 +5,7 @@ import IndexPage from 'pages/IndexPage'
 import Navbar from 'components/Navbar'
 import LoginPage from 'pages/LoginPage'
 import CreateTodoPage from 'pages/CreateTodoPage'
+import TodoDetailPage from 'pages/TodoDetailPage'
 
 function App() {
   const auth = useSelector((state: any) => state.auth)
@@ -25,6 +26,10 @@ function App() {
           <Switch>
             <Route exact path="/create">
               <CreateTodoPage />
+            </Route>
+
+            <Route exact path="/todo/:id">
+              <TodoDetailPage />
             </Route>
             <Route path="/">
               <IndexPage />
