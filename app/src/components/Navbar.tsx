@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import SearchBox from './SearchBox'
 
 const Navbar = () => {
+
   return (
     <Toolbar className="z-10">
       <div className="flex items-center -mx-6">

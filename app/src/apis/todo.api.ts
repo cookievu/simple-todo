@@ -1,7 +1,7 @@
 import Api from 'config/axios'
 
-export function getTodos(page: number = 1): Promise<any> {
-  return Api.get('todos', {params:{page}})
+export function getTodos(page: number = 1, keyword?: string): Promise<any> {
+  return Api.get('todos', { params: { page, keyword } })
 }
 
 export function getTodo(id: number): Promise<any> {
@@ -25,5 +25,5 @@ export default {
   getTodo,
   createTodo,
   updateTodo,
-  deleteTodo
+  deleteTodo,
 }

@@ -20,7 +20,7 @@ function App() {
           </Route>
         </Switch>
       ) : (
-        <div>
+        <div className="pt-16">
           <Navbar />
           <Switch>
             <Route exact path="/create">

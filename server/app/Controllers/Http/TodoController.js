@@ -4,8 +4,16 @@ const NotFoundException = use("App/Exceptions/NotFoundException");
 
 class TodoController {
   async index({ request, response, auth }) {
-    const { page } = request.get();
-    const todos = await auth.user.todos().paginate(page | 1, 20);
+    const { page, keyword } = request.get();
+    const todos = await auth.user
+      .todos()
+      .where((bd) => {
+        if (keyword) {
+          bd.where("title", "like", `%${keyword}%`);
+        }
+      })
+      .orderBy('id', 'desc')
+      .paginate(page | 1, 20);
     return response.json(todos);
   }
 

@@ -4,9 +4,9 @@ import todo from 'apis/todo.api'
 import {navigator} from 'utils/navigation'
 
 export function* getTodos(action: ActionType) {
-  const { page } = action.payload
+  const { page, keyword } = action.payload
   try {
-    const response = yield call(todo.getTodos, page)
+    const response = yield call(todo.getTodos, page, keyword)
     yield put({ type: 'GET_TODOS_SUCCESS', payload: response })
   } catch (error) {
     yield put({ type: 'GET_TODOS_FAILED', payload: error.message })
@@ -36,9 +36,9 @@ export function* createTodo(action: ActionType) {
 export function* deleteTodo(action: ActionType) {
   const { id } = action.payload
   try {
-    const response = yield call(todo.deleteTodo, id)
-    yield put({ type: 'DELETE_TODO_SUCCESS', payload: response })
+    yield call(todo.deleteTodo, id)
+    yield put({ type: 'REMOVE_TODO_SUCCESS', payload: {id} })
   } catch (error) {
-    yield put({ type: 'DELETE_TODO_FAILED', payload: error.message })
+    yield put({ type: 'REMOVE_TODO_FAILED', payload: error.message })
   }
 }

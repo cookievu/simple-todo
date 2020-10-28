@@ -3,7 +3,7 @@ import { removeItemById, removeLastItem } from 'utils/array'
 
 const initData = {
   todos: [],
-  page: 1,
+  page: 0,
   totalPage: 1,
   currentTodo: null,
   totalItems: 0,
@@ -76,7 +76,7 @@ const todoReducer = (state = initData, { type, payload }: ActionType) => {
     case 'REMOVE_TODO_SUCCESS':
       return {
         ...state,
-        todos: [...removeItemById(state.todos, payload)],
+        todos: [...removeItemById(state.todos, payload.id)],
         isLoading: false,
       }
     case 'REMOVE_TODO_FAILED':
